@@ -6,4 +6,4 @@ class testPreprocessor(preprocessor):
         super().__init__(config)
 
     def preprocess(self):
-        self.publisher.publish('soeme')
+        self.publisher.publishText('soeme')

@@ -7,6 +7,7 @@ from base.subscriber import subscriber
 
 
 class infoExtractor():
+    """Base class for information extraction"""
     def __init__(self,config: configuration):
         self.config = config.config
         self.logger = logging.basicConfig(level=logging.DEBUG, filename=self.config['name']+'.log')
