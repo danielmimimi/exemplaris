@@ -4,5 +4,7 @@
         "ip":"127.0.0.1",
         "port":61613,
         "topic":"testTopic"
-    }
+    },
+    "dummy":10
+
 }
