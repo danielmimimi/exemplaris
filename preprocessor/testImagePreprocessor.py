@@ -13,5 +13,7 @@ class testImagePreprocessor(preprocessor):
             (ret, imageMat) = capture.read()
             encodedSucess, encodedImage = cv2.imencode('.jpg',imageMat)
             self.publisher.publishImage(encodedImage)
+        capture.release()
+
 
         
