@@ -1,8 +1,9 @@
 import stomp
 import numpy as np
-import cv2
+import json
 from base.configReader import configuration
 from base.infoExtractor import infoExtractor
+from utils.imageConverter import imageConverter
 
 class testInfoImageExtracton(infoExtractor,stomp.ConnectionListener):
     """test to visualize concept"""
@@ -16,8 +17,5 @@ class testInfoImageExtracton(infoExtractor,stomp.ConnectionListener):
 
     def on_message(self, headers):
         """callback when topic receives data"""
-        nparr = np.fromstring(headers.body, np.uint8)
-        img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR) # cv2.IMREAD_COLOR in OpenCV 3.1
-
-        print(headers.body)
-
+        converter =  imageConverter()
+        extractedImage = converter.imageDecode(json.loads(headers.body))

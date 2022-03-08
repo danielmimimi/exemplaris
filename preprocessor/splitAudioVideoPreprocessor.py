@@ -3,15 +3,15 @@ from base.preprocessor import preprocessor
 
 import cv2
 import json
+import subprocess
 
 from utils.imageConverter import imageConverter
 
-class testImagePreprocessor(preprocessor):
+class splitAudioVideoPreprocessor(preprocessor):
     def __init__(self, config: configuration):
         super().__init__(config)
 
     def preprocess(self):
-        capture = cv2.VideoCapture("test\data\sample_1280x720_surfing_with_audio.mpeg")
         converter = imageConverter()
         while(capture.isOpened()):
             (ret, imageMat) = capture.read()
@@ -19,5 +19,13 @@ class testImagePreprocessor(preprocessor):
             self.publisher.publish(json.dumps(encodedImageJson))
         capture.release()
 
+    
 
+    def convert_video_to_audio_ffmpeg(video_file, output_ext="mp3"):
+        """Converts video to audio directly using `ffmpeg` command
+        with the help of subprocess module"""
+        filename, ext = os.path.splitext(video_file)
+        subprocess.call(["ffmpeg", "-y", "-i", video_file, f"{filename}.{output_ext}"], 
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.STDOUT)
         

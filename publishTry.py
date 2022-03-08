@@ -19,4 +19,4 @@ if True:
 
 while(True):
     prerocessor.preprocess()
-    time.sleep(10)
+    time.sleep(20)

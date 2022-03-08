@@ -2,6 +2,7 @@ import json
 import cv2
 import numpy as np
 import base64
+
 class imageConverter:
     """Serializes and Deserializes single frames"""
     def __init__(self) -> None:
