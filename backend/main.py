@@ -16,12 +16,23 @@ def feed():
     
     return 'Ok'
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
-    #                                                                         ||
-                                                # Data should be of this form \/
-    timestamp = 1646855893
-    return render_template('index.html', data=[{'timestamp': datetime.utcfromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S'), 'proc_name': 'name', 'result': 'this is some text', 'link': 'google.com'}])
+    data = []
+
+    if request.method == 'POST':
+        filters = {key: val for key, val in request.form.to_dict().items() if val}
+        return_data = []
+        for x in data:
+            for key, val in filters.items():
+                if val in data[key]:
+                    return_data.append(x)
+                    break
+                
+    else:
+        return_data = data
+
+    return render_template('index.html', data=return_data)
 
 # main driver function
 if __name__ == '__main__':
