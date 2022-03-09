@@ -26,4 +26,6 @@ mc policy get-json myminio/mybucket > policy.json
 # Search for "s3:ListBucket" and remove it
 # Apply the modified policy
 mc policy set-json policy.json myminio/mybucket
+# Test anonymous download:
+wget http://<your-ip-here>:9000/mybucket/<your-file>
 ```
