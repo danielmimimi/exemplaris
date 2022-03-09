@@ -2,3 +2,4 @@
 ignore = D203
 exclude = .git,__pycache__,docs,venv,build,dist
 max-complexity = 10
+max-line-length = 120

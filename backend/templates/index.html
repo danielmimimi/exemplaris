@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exemplaris</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/bootstrap.css') }}">
+  </head>
+  <body>
+      <h1>Exemplaris</h1>
+      <form method="POST" action="/">
+          <!-- <label for ="datetime_from">From:</label>
+          <input type="date" name="from"/>
+
+          <label for ="datetime_to">To:</label>
+          <input type="date" name="to" /> -->
+
+          <label for="proc">Proc_name:</label>
+          <input type="text" name="proc" />
+
+
+          <label for="result">Result:</label>
+          <input type="text" name="result" />
+
+          <input type="submit" value="Submit"/>
+      </form>
+	<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>proc_name</th>
+                <th>Result</th>
+                <th>Link to File</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for res in data %}
+            <tr>
+                <td>{{res.timestamp}}</td>
+                <td>{{res.proc_name}}</td>
+                <td>{{res.result}}</td>
+                <td><a href="{{res.link}}">{{res.link}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </body>
+</html>
