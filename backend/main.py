@@ -1,6 +1,6 @@
 from crypt import methods
 from distutils.log import debug
-from flask import Flask, request
+from flask import Flask, request, render_template
     
 app = Flask(__name__)
 
@@ -16,9 +16,10 @@ def feed():
     return 'Ok'
 
 @app.route('/')
-# ‘/’ URL is bound with hello_world() function.
-def hello_world():
-    return 'Hello World'
+def index():
+    #                                                                         ||
+                                                # Data should be of this form \/
+    return render_template('index.html', data=[{'timestamp': 2020, 'proc_name': 'name', 'result': 'this is some text', 'link': 'google.com'}])
 
 # main driver function
 if __name__ == '__main__':
