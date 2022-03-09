@@ -1,15 +1,15 @@
-
 import logging
-import stomp
-from base.configReader import configuration
+from base.configReader import Configuration
 
-from base.subscriber import subscriber
+from base.subscriber import Subscriber
 
 
-class infoExtractor():
+class InfoExtractor:
     """Base class for information extraction"""
-    def __init__(self,config: configuration):
+
+    def __init__(self, config: Configuration):
         self.config = config.config
-        self.logger = logging.basicConfig(level=logging.DEBUG, filename=self.config['name']+'.log')
-        self.subscriber = subscriber(self.config,self.logger)
-        
+        # TODO figure out if logging requires an instance to be held
+        logging.basicConfig(
+            level=logging.DEBUG, filename=config.config['name'] + '.log')
+        self.subscriber = Subscriber(self.config, None)  # FIXME

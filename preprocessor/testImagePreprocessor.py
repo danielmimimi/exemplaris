@@ -1,23 +1,22 @@
-from base.configReader import configuration
-from base.preprocessor import preprocessor
+from base.configReader import Configuration
+from base.preprocessor import Preprocessor
 
 import cv2
 import json
 
 from utils.imageConverter import imageConverter
 
-class testImagePreprocessor(preprocessor):
-    def __init__(self, config: configuration):
+
+class TestImagePreprocessor(Preprocessor):
+    def __init__(self, config: Configuration):
         super().__init__(config)
 
     def preprocess(self):
-        capture = cv2.VideoCapture("test\data\sample_1280x720_surfing_with_audio.mpeg")
+        capture = cv2.VideoCapture(
+            "test\\data\\sample_1280x720_surfing_with_audio.mpeg")
         converter = imageConverter()
-        while(capture.isOpened()):
+        while capture.isOpened():
             (ret, imageMat) = capture.read()
-            encodedImageJson = converter.imageEncode(imageMat)
-            self.publisher.publish(json.dumps(encodedImageJson))
+            encoded_image_json = converter.imageEncode(imageMat)
+            self.publisher.publish(json.dumps(encoded_image_json))
         capture.release()
-
-
-        

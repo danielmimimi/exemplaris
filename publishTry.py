@@ -1,22 +1,20 @@
-from base.configReader import configuration
-from preprocessor.testPreprocessor import testPreprocessor
-from preprocessor.testImagePreprocessor import testImagePreprocessor
-
+from base.configReader import Configuration
+from preprocessor.testPreprocessor import TestPreprocessor
+from preprocessor.testImagePreprocessor import TestImagePreprocessor
 
 import time
 
-
 if False:
-    config = configuration('preprocessor/testPreprocessorConfig.json')
+    config = Configuration('Preprocessor/testPreprocessorConfig.json')
     config.load()
 
-    prerocessor = testPreprocessor(config)
+    preprocessor = TestPreprocessor(config)
 if True:
-    config = configuration('preprocessor/testImagePreprocessorConfig.json')
+    config = Configuration('preprocessor/testImagePreprocessorConfig.json')
     config.load()
 
-    prerocessor = testImagePreprocessor(config)
+    preprocessor = TestImagePreprocessor(config)
 
-while(True):
-    prerocessor.preprocess()
+while True:
+    preprocessor.preprocess()
     time.sleep(20)

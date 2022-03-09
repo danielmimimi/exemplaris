@@ -1,21 +1,20 @@
 import time
 
-from base.configReader import configuration
-from infoExtraction.testInfoExtracton import testInfoExtracton
-from infoExtraction.testInfoImageExtracton import testInfoImageExtracton
+from base.configReader import Configuration
+from infoExtraction.testInfoImageExtracton import TestInfoImageExtraction
 
 if False:
 
-    config = configuration('infoExtraction/testInfoExtractonConfig.json')
+    config = Configuration('infoExtraction/testInfoExtractonConfig.json')
     config.load()
 
-    prerocessor = testInfoExtracton(config)
+    prerocessor = TestInfoImageExtraction(config)
 
 else:
-    config = configuration('infoExtraction/testInfoImageExtractonConfig.json')
+    config = Configuration('infoExtraction/testInfoImageExtractonConfig.json')
     config.load()
 
-    prerocessor = testInfoImageExtracton(config)
+    prerocessor = TestInfoImageExtraction(config)
 
-while(True):
+while True:
     time.sleep(10)
