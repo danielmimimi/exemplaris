@@ -10,14 +10,9 @@ app = Flask(__name__)
 
 @app.route('/feed', methods=['POST'])
 def feed():
-    blob = request.form
-    print(blob)
-    return 'Ok'
-
-@app.route('/give', methods=['POST'])
-def feed():
-    blob = request.form
-    print(blob)
+    data_in = request.form
+    # TODO: Do database stuff here
+    
     return 'Ok'
 
 @app.route('/')
