@@ -7,6 +7,7 @@ ENV TABLE_NAME="babe"
 
 WORKDIR /app
 
+RUN pip3 install --upgrade pip
 COPY . .
 RUN pip3 install -r requirements.txt
 
