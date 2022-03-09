@@ -1,12 +1,14 @@
 import stomp
-from base.configReader import configuration
-from base.infoExtractor import infoExtractor
+from base.configReader import Configuration
+from base.infoExtractor import InfoExtractor
 
-class testInfoExtracton(infoExtractor,stomp.ConnectionListener):
+
+class testInfoExtracton(InfoExtractor, stomp.ConnectionListener):
     """test to visualize concept"""
-    def __init__(self, config: configuration):
+
+    def __init__(self, config: Configuration):
         super().__init__(config)
-        self.subscriber.setListener(self.config['name'],self)
+        self.subscriber.setListener(self.config['name'], self)
 
     def on_error(self, headers):
         """callback when topic receives an error"""
@@ -15,4 +17,3 @@ class testInfoExtracton(infoExtractor,stomp.ConnectionListener):
     def on_message(self, headers):
         """callback when topic receives data"""
         print(headers)
-

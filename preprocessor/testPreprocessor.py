@@ -1,8 +1,9 @@
-from base.configReader import configuration
-from base.preprocessor import preprocessor
+from base.configReader import Configuration
+from base.preprocessor import Preprocessor
 
-class testPreprocessor(preprocessor):
-    def __init__(self, config: configuration):
+
+class TestPreprocessor(Preprocessor):
+    def __init__(self, config: Configuration):
         super().__init__(config)
 
     def preprocess(self):

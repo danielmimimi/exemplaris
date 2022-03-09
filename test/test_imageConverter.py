@@ -1,29 +1,29 @@
-
 import utils.imageConverter as imConv
 import cv2
 import unittest
 
 
-class Test_ImageConverter(unittest.TestCase):
+class TestImageConverter(unittest.TestCase):
     def test_encodeImage(self):
         """Encodes and decodes image"""
         try:
-            capture = cv2.VideoCapture("test\data\sample_1280x720_surfing_with_audio.mpeg")
+            capture = cv2.VideoCapture(
+                "test\\data\\sample_1280x720_surfing_with_audio.mpeg")
             counter = 0
-            while(capture.isOpened()):
+            while capture.isOpened():
                 (ret, imageMat) = capture.read()
-                if(counter == 100):
+                if counter == 100:
                     converter = imConv.imageConverter()
-                    jsonOutput = converter.imageEncode(imageMat)
-                    decodedImage = converter.imageDecode(jsonOutput)
+                    json_output = converter.imageEncode(imageMat)
+                    decoded_image = converter.imageDecode(json_output)
                     # Visualize JPEG conversion Error
-                    subImage = imageMat - decodedImage
+                    subImage = imageMat - decoded_image  # noqa
                     break
                 counter += 1
             capture.release()
-        except:
-            self.assertEqual(True,True)
-        
+        except Exception:
+            self.assertEqual(True, True)
+
 
 if __name__ == '__main__':
     unittest.main()

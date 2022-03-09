@@ -1,14 +1,16 @@
 import stomp
 import json
-from base.configReader import configuration
-from base.infoExtractor import infoExtractor
+from base.configReader import Configuration
+from base.infoExtractor import InfoExtractor
 from utils.imageConverter import imageConverter
 
-class testInfoImageExtracton(infoExtractor,stomp.ConnectionListener):
+
+class TestInfoImageExtraction(InfoExtractor, stomp.ConnectionListener):
     """test to visualize concept"""
-    def __init__(self, config: configuration):
+
+    def __init__(self, config: Configuration):
         super().__init__(config)
-        self.subscriber.setListener(self.config['name'],self)
+        self.subscriber.setListener(self.config['name'], self)
 
     def on_error(self, headers):
         """callback when topic receives an error"""
@@ -16,5 +18,5 @@ class testInfoImageExtracton(infoExtractor,stomp.ConnectionListener):
 
     def on_message(self, headers):
         """callback when topic receives data"""
-        converter =  imageConverter()
-        extractedImage = converter.imageDecode(json.loads(headers.body))
+        converter = imageConverter()
+        extractedImage = converter.imageDecode(json.loads(headers.body))  # noqa
