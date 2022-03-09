@@ -2,6 +2,9 @@ from crypt import methods
 from distutils.log import debug
 from flask import Flask, request, render_template
 from datetime import datetime
+import time
+
+from db_feed import PostGreSQL
     
 app = Flask(__name__)
 
@@ -18,17 +21,18 @@ def feed():
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    data = []
+    sql = PostGreSQL
+    data = sql.fetch()
 
     if request.method == 'POST':
-        filters = {key: val for key, val in request.form.to_dict().items() if val}
+        print(request.form.to_dict())
+        filters = request.form.to_dict()
         return_data = []
         for x in data:
-            for key, val in filters.items():
-                if val in data[key]:
-                    return_data.append(x)
-                    break
-                
+            if filters['proc'] in data['proc'] and filters['result']:
+                return_data.append(x)
+                break
+
     else:
         return_data = data
 
