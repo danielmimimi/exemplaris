@@ -27,9 +27,8 @@ def index():
         filters = request.form.to_dict()
         return_data = []
         for x in data:
-            if filters['proc'] in data['proc'] and filters['result']:
+            if filters['proc'] in data['proc'] and filters['result'] in data['result']:
                 return_data.append(x)
-                break
 
     else:
         return_data = data
