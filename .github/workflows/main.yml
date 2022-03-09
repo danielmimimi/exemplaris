@@ -17,10 +17,10 @@ on:
         type: boolean
   push:
     branches:
-      - master
+      - "**"
   pull_request:
     branches:
-      - master
+      - "**"
 
 jobs:
   lint:
