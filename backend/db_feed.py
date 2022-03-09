@@ -1,6 +1,7 @@
 from os import environ
 from psycopg2 import connect
 
+
 class PostGreSQL:
     def __init__(self) -> None:
         self.connection = connect(dbname=environ['DB_NAME'], user=environ['DB_USER'], password=environ['DB_PASS'])
