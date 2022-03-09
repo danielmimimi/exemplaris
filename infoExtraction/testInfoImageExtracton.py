@@ -1,5 +1,4 @@
 import stomp
-import numpy as np
 import json
 from base.configReader import configuration
 from base.infoExtractor import infoExtractor

@@ -11,3 +11,7 @@ To start ActiveMQ broker
 
 
 With running ActiveMQ Broker, run subsubExample.py to see dataflow between the two main processes.
+
+
+
+To create mockdata use : https://www.mockaroo.com/
