@@ -17,10 +17,9 @@ on:
         type: boolean
   push:
     branches:
-      - "**"
+      - main
   pull_request:
-    branches:
-      - "**"
+    types: [opened, reopened]
 
 jobs:
   lint:
