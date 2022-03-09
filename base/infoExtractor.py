@@ -1,5 +1,4 @@
 import logging
-import json
 from base.configReader import Configuration
 from datetime import datetime
 from base.subscriber import Subscriber
@@ -15,20 +14,17 @@ class InfoExtractor:
             level=logging.DEBUG, filename=config.config['name'] + '.log')
         self.subscriber = Subscriber(self.config, None)  # FIXME
 
-    def uploadBlobToS3(self, pathToData : str):
+    def upload_blob_to_s3(self, path_to_data: str):
         """Copies data to S3 bucket and returns storage adress"""
         raise NotImplementedError
 
-    def insertDataIntoDatabase(self, infoExtractorName : str, result : str, blobPath : str):
+    def insert_data_into_database(self, info_extractor_name: str, result: str,
+                                  blob_path: str):
         """Sends the data to the restAPI"""
-        data = {
-            "proc_Name":infoExtractorName,
+        data = {  # noqa:F841
+            "proc_Name": info_extractor_name,
             "timestamp": datetime.now().time() * 1000,
             "result": result,
-            "link":blobPath
+            "link": blob_path
         }
         raise NotImplementedError
-
-
-
-
