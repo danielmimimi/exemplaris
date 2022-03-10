@@ -5,16 +5,24 @@ services:
     image: backend:latest
     build:
       context: backend
+    environment:
+      DB_USER: ${POSTGRES_USER}
+      DB_PASS: ${POSTGRES_PASSWORD}
+      DB_NAME: ${POSTGRES_DB}
+      DB_HOST: database
+      DB_PORT: 5432
+      TABLE_NAME: babe
     ports:
       - '5000:5000'
-    
+    link:
+      - "db:database"
   db:
     image: postgres:14.2
     restart: always
     environment:
-      POSTGRES_USER: supaUs3r
-      POSTGRES_PASSWORD: supaS3cure
-      POSTGRES_DB: datababe
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     logging:
       options:
         max-size: 10m

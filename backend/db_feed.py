@@ -4,7 +4,13 @@ from psycopg2 import connect
 
 class PostGreSQL:
     def __init__(self) -> None:
-        self.connection = connect(dbname=environ['DB_NAME'], user=environ['DB_USER'], password=environ['DB_PASS'])
+        self.connection = connect(
+            dbname=environ['DB_NAME'],
+            user=environ['DB_USER'],
+            password=environ['DB_PASS'],
+            host=environ['DB_HOST'],
+            port=environ['DB_PORT']
+        )
 
     def insert(self, proc_name: str, date: int, result: str, link: str) -> None:
         with self.connection:
